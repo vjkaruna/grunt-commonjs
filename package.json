@@ -13,12 +13,16 @@
   "bugs": {
     "url": "https://github.com/chrissrogers/grunt-wrap/issues"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "https://github.com/chrissrogers/grunt-wrap/blob/master/LICENSE-MIT"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/chrissrogers/grunt-wrap/blob/master/LICENSE-MIT"
+    }
+  ],
   "main": "grunt.js",
-  "bin": "bin/grunt-wrap",
+  "bin": {
+    "grunt-wrap": "bin/grunt-wrap"
+  },
   "engines": {
     "node": "*"
   },
@@ -31,5 +35,13 @@
   "devDependencies": {
     "grunt": "~0.3.8"
   },
-  "keywords": ["gruntplugin"]
+  "keywords": [
+    "gruntplugin"
+  ],
+  "readme": "# grunt-wrap\n\nWraps text files\n\n## Getting Started\nInstall this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: ``npm install grunt-wrap``\n\nThen add this line to your project's ``grunt.js`` gruntfile:\n\n```javascript\ngrunt.loadNpmTasks('grunt-wrap');\n```\n\n[grunt]: https://github.com/cowboy/grunt\n[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md\n\n## Documentation\nConfigure which files to be copied in your `initConfig`:\n\n```javascript\ngrunt.initConfig({\n\n  // ... other configs\n\n  // wrap my modules with define\n  wrap: {\n    modules: {\n      src: ['assets/*.js'],\n      dest: 'dist/',\n      wrapper: ['define(function (require, exports, module) {\\n', '\\n});']\n    }\n  },\n\n  // ... other configs\n});\n```\n\n## Contributing\nIn lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests\nfor any new or changed functionality. Lint and test your code using [grunt][grunt].\n\n## Release History\n* 2012 Oct 4 - v0.1.0 - Initial release.\n\n## License\nCopyright (c) 2012 Christopher Rogers\nLicensed under the MIT license.\n",
+  "_id": "grunt-wrap@0.1.1",
+  "dist": {
+    "shasum": "49d0182f0cf0663c2616ff660ebf316ca5d3e5ff"
+  },
+  "_from": "grunt-wrap"
 }

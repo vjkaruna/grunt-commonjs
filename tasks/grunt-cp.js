@@ -25,12 +25,12 @@ module.exports = function(grunt) {
         path = require('path'),
         task = this,
         src;
-
     // Concat specified files.
+    
     if (files) {
       files.map(function (filepath) {
-        src = grunt.helper('wrap', filepath, {wrapper: task.data.wrapper});
-        grunt.file.write(path.join(task.file.dest, filepath), src);
+        src = grunt.helper('wrap', filepath, {wrapper: task.data.wrapper, excludeBase: task.data.excludeBase});
+        grunt.file.write(path.join(task.file.dest, filepath.replace(task.data.excludeBase, '')), src);
       });
     }
 
@@ -46,10 +46,21 @@ module.exports = function(grunt) {
   // ==========================================================================
 
   grunt.registerHelper('wrap', function (filepath, options) {
+
     options = grunt.utils._.defaults(options || {}, {
-      wrapper: ['', '']
+      wrapper: ['', ''],
+      excludeBase: ''
     });
-    return options.wrapper[0] + grunt.task.directive(filepath, grunt.file.read) + options.wrapper[1];
+
+    //console.log("Exclude me: " + options.excludeBase);
+    definepath = filepath.replace(options.excludeBase, '').replace(/\.\w+$/, '');
+
+    if (typeof(options.wrapper) === 'function') {
+      return options.wrapper(definepath, grunt.task.directive(filepath, grunt.file.read));
+    } else {
+      return options.wrapper[0] + grunt.task.directive(filepath, grunt.file.read) + options.wrapper[1];
+    }
+    
   });
 
 };
