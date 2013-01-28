@@ -21,46 +21,20 @@ module.exports = function(grunt) {
   // ==========================================================================
 
   grunt.registerMultiTask('wrap', 'Wrap files.', function () {
-    var files = grunt.file.expandFiles(this.file.src),
-        path = require('path'),
-        task = this,
-        src;
-    // Concat specified files.
-    
-    if (files) {
-      files.map(function (filepath) {
-        src = grunt.helper('wrap', filepath, {wrapper: task.data.wrapper, excludeBase: task.data.excludeBase});
-        grunt.file.write(path.join(task.file.dest, filepath.replace(task.data.excludeBase, '')), src);
-      });
-    }
 
-    // Fail task if errors were logged.
-    if (this.errorCount) return false;
+    var files = this.files[0].src,
+        options = this.data;
 
-    // Otherwise, print a success message.
-    grunt.log.writeln('Wrapped files created in "' + this.file.dest + '".');
-  });
+    //var file = grunt.file.read(this);
+    //console.log(files);
 
-  // ==========================================================================
-  // HELPERS
-  // ==========================================================================
+    files.map(function(filepath) {
+      var file = grunt.file.read(filepath)
+      var definepath = filepath.replace(options.excludeBase, '').replace(/\.\w+$/, '');
 
-  grunt.registerHelper('wrap', function (filepath, options) {
-
-    options = grunt.utils._.defaults(options || {}, {
-      wrapper: ['', ''],
-      excludeBase: ''
+      var src = 'window.require.define({"' + definepath + '": function(exports, require, module) {\n' + file + '}});\n\n';
+      grunt.file.write(filepath, src);
     });
-
-    //console.log("Exclude me: " + options.excludeBase);
-    definepath = filepath.replace(options.excludeBase, '').replace(/\.\w+$/, '');
-
-    if (typeof(options.wrapper) === 'function') {
-      return options.wrapper(definepath, grunt.task.directive(filepath, grunt.file.read));
-    } else {
-      return options.wrapper[0] + grunt.task.directive(filepath, grunt.file.read) + options.wrapper[1];
-    }
-    
   });
 
-};
+}
