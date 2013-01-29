@@ -1,6 +1,6 @@
 # grunt-commonjs
 
-Wraps text files
+Wraps .js files for CommonJS.
 
 ## Getting Started
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: ``npm install grunt-commonjs --save-dev``
