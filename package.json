@@ -1,6 +1,6 @@
 {
   "name": "grunt-commonjs",
-  "description": "A Grunt 0.4.x plugin for wrapping client-side commonjs modules",
+  "description": "Wraps client-side commonjs modules.",
   "version": "0.1.0rc7",
   "homepage": "https://github.com/avos/grunt-commonjs",
   "author": {
