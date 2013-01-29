@@ -1,16 +1,16 @@
 /**
- * grunt-wrap
- * https://github.com/chrissrogers/grunt-wrap
+ * grunt-commonjs
+ * https://github.com/avos/grunt-commonjs
  *
- * Copyright (c) 2012 Christopher Rogers
+ * Copyright (c) 2013 Team Delicious, AVOS Systems Inc.
  * Licensed under the MIT license.
  */
 
-// wrap: {
+// commonjs: {
 //   modules: {
 //     src: ['assets/*.js'],
 //     dest: 'dist/',
-//     wrapper: ['define(function (require, exports, module) {\n', '\n});']
+//     excludeBase: 'assets/'
 //   }
 // }
 
@@ -20,13 +20,10 @@ module.exports = function(grunt) {
   // TASKS
   // ==========================================================================
 
-  grunt.registerMultiTask('wrap', 'Wrap files.', function () {
+  grunt.registerMultiTask('commonjs', 'Wrap .js files for commonjs.', function () {
 
     var files = this.files[0].src,
         options = this.data;
-
-    //var file = grunt.file.read(this);
-    //console.log(files);
 
     files.map(function(filepath) {
       var file = grunt.file.read(filepath)
@@ -36,5 +33,4 @@ module.exports = function(grunt) {
       grunt.file.write(filepath, src);
     });
   });
-
 }
