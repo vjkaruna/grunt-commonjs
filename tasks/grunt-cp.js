@@ -8,11 +8,13 @@
 
 // commonjs: {
 //   modules: {
-//     src: ['assets/*.js'],
-//     dest: 'dist/',
-//     excludeBase: 'assets/'
+//    cwd: 'assets/',
+//    src: ['assets/*.js'],
+//    dest: 'dist/'
 //   }
 // }
+
+var path = require('path');
 
 module.exports = function(grunt) {
 
@@ -22,15 +24,12 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('commonjs', 'Wrap .js files for commonjs.', function () {
 
-    var files = this.files[0].src,
-        options = this.data;
-
-    files.map(function(filepath) {
-      var file = grunt.file.read(filepath)
-      var definepath = filepath.replace(options.excludeBase, '').replace(/\.\w+$/, '');
-
-      var src = 'window.require.define({"' + definepath + '": function(exports, require, module) {\n' + file + '}});\n\n';
-      grunt.file.write(filepath, src);
+    this.files.forEach(function(file) {
+      return file.src.map(function(filepath) {
+        var definePath = (filepath.replace(/\.\w+$/, '')),
+            original = grunt.file.read(path.join(file.cwd, filepath));
+        return grunt.file.write(file.dest + filepath, 'window.require.define({"' + definePath + '": function(exports, require, module) {\n' + original + '}});\n\n');
+      });
     });
   });
 }

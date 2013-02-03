@@ -25,9 +25,9 @@ grunt.initConfig({
   // wrap my modules with define
   commonjs: {
     modules: {
-      src: ['assets/*.js'],
-      dest: 'dist/',
-      excludeBase: 'assets/'
+      cwd: 'assets/',
+      src: ['**/*.js'],
+      dest: 'dist/'
     }
   },
 
