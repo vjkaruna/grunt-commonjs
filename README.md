@@ -1,6 +1,6 @@
 # grunt-commonjs
 
-Wraps client-side commonjs modules.
+Wraps client-side CommonJS modules.
 
 ## Getting Started
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: ``npm install grunt-commonjs --save-dev``
@@ -10,6 +10,9 @@ Then add this line to your project's ``Gruntfile.js``:
 ```javascript
 grunt.loadNpmTasks('grunt-commonjs');
 ```
+
+###CommonJS loader
+You'll need a loader to detect your wrapped packages. You can use this simple [CommonJS loader](https://github.com/chrisabrams/commonjs) which is based off how [brunch.io](http://brunch.io) loads CommonJS packages.
 
 [grunt]: https://github.com/cowboy/grunt
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
@@ -34,11 +37,6 @@ grunt.initConfig({
   // ... other configs
 });
 ```
-
-###Exclude base
-Part of the path in each source file to exclude. In the above example, if there was a file in `assets/fonts/all.js` then when the commonjs module path is set, it would be `fonts/all` and not `assets/fonts/all`.
-
-This is useful for when you are copying the contents of a folder into another folder, and the app is initialized in the destination folder.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
