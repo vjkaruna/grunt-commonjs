@@ -1,6 +1,6 @@
 # grunt-commonjs
 
-Wraps client-side CommonJS modules.
+Wraps .js files into CommonJS modules for client-side usage.
 
 ## Getting Started
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: ``npm install grunt-commonjs --save-dev``
