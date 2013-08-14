@@ -28,7 +28,7 @@ module.exports = function(grunt) {
       return file.src.map(function(filepath) {
         var definePath = (filepath.replace(/\.\w+$/, '')),
             original = grunt.file.read(path.join(file.cwd, filepath));
-        return grunt.file.write(file.dest + filepath, 'window.require.define({"' + definePath + '": function(exports, require, module) {' + original + '}});\n');
+        return grunt.file.write(file.dest + filepath, 'window.require.register("' + definePath + '", function(require, module) {' + original + '});\n');
       });
     });
   });
