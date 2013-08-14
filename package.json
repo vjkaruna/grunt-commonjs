@@ -1,14 +1,14 @@
 {
   "name": "grunt-commonjs",
   "description": "Wraps client-side commonjs modules.",
-  "version": "0.2.0rc7",
+  "version": "0.3.0",
   "homepage": "https://github.com/avos/grunt-commonjs",
   "author": {
     "name": "Chris Abrams"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/avos/grunt-commonjs.git"
+    "url": "git://github.com/clindsey/grunt-commonjs.git"
   },
   "bugs": {
     "url": "https://github.com/avos/grunt-commonjs/issues"
